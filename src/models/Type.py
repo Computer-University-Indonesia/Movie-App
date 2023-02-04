@@ -4,4 +4,4 @@ df_type = GetData('type')
 
 
 def getAllType():
-  return df_type['type'].drop_duplicates()
+  return df_type['type'].value_counts().index

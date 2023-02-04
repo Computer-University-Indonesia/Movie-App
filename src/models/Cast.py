@@ -4,4 +4,4 @@ df_cast = GetData('cast')
 
 
 def getAllCast():
-  return df_cast['cast'].drop_duplicates()
+  return df_cast['cast'].value_counts().index

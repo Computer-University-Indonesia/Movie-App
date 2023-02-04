@@ -4,4 +4,4 @@ df_type = GetData('director')
 
 
 def getAllDirector():
-  return df_type['director'].drop_duplicates()
+  return df_type['director'].value_counts().index

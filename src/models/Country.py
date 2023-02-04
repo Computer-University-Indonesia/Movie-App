@@ -4,4 +4,4 @@ df_type = GetData('country')
 
 
 def getAllCountry():
-  return df_type['country'].drop_duplicates()
+  return df_type['country'].value_counts().index

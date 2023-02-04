@@ -18,5 +18,5 @@ main_app.register_blueprint(CountryApp)
 
 print("Server is running on url: "+ BASE_URL +":", PORT)
 if(__name__ == "__main__"):
-  main_app.run()
+  main_app.run(debug=DEBUG, host=BASE_URL, port=PORT)
 
