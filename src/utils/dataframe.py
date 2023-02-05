@@ -17,8 +17,12 @@ def splitDataFrameList(df,target_column,separator):
     new_df = pd.DataFrame(new_rows)
     return new_df
 
+
 def createPivotOf(dataFrame, targetDataFrame, column1, column2):
   dataFrame = splitDataFrameList(targetDataFrame, column2, ', ')
   dataFrame = dataFrame[[column1, column2]]
-  pivotName = dataFrame.pivot_table(index= dataFrame[column2], columns = dataFrame[column1], values=[column2], aggfunc='count')
-  return pivotName.fillna(0).astype(int).to_dict()
+  dataFrame = dataFrame.groupby([column1, column2]).size()
+  dataFrane = dataFrame.reset_index()
+  # pivotName = dataFrame.pivot_table(index= dataFrame[column2], columns = dataFrame[column1], values=[column2], aggfunc='count')
+  # return pivotName.fillna(0).astype(int)
+  return dataFrame.reset_index()

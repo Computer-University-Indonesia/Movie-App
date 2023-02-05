@@ -1,13 +1,16 @@
-from flask import Blueprint
+from flask import Blueprint, request
 import src.models.Gendre as Gendre
 import src.utils.response as response
-GenreApp = Blueprint('GenreApp', __name__)
+GenreApp = Blueprint('GenreApp', __name__, url_prefix='/gendres')
 
 
-@GenreApp.route('/gendres')
+@GenreApp.get('/')
 def index():
   try:
-    gendres = Gendre.getAllGendre().to_list()
-    return response.success( gendres)
+    key = request.args.get('key')
+    value = request.args.get('value')
+    gendres = Gendre.getAllGendre()
+    if(key != None and value != None) : gendres = Gendre.getGendreFiltered(key, value)
+    return response.success(gendres.to_list())
   except  Exception as e:
     return response.error( e.args[0])

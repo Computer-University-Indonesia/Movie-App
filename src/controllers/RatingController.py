@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint,request
 import src.models.Rating as Rating
 import src.utils.response as response
 RatingApp = Blueprint('RatingApp', __name__)
@@ -7,6 +7,11 @@ RatingApp = Blueprint('RatingApp', __name__)
 @RatingApp.route('/ratings')
 def index():
   try:
-    return response.success(Rating.getAllRating().to_list())
+    key = request.args.get('key')
+    value = request.args.get('value')
+    ratings = Rating.getAllRating()
+    if (key != None and value != None):
+      ratings = Rating.getRatingFiltered(key, value)
+    return response.success(ratings.to_list())
   except Exception as e:
     return response.error(e.args[0])
