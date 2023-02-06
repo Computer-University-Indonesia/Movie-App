@@ -6,6 +6,8 @@ from src.config.config import SCRAPING_URL
 from src.config.cleaning import data_cleaning as cleaning
 
 def GetData(type):
+  print('Getting data from:', SCRAPING_URL)
+
   xhtml=url_get_contents(SCRAPING_URL).decode('utf-8')
   
   p = HTMLTableParser()
