@@ -14,3 +14,11 @@ def index():
     return response.success(gendres.to_list())
   except  Exception as e:
     return response.error( e.args[0])
+
+@GenreApp.get('/grafik')
+def grafik():
+  try:
+    gendres = Gendre.getGendreWithAllAttributes()
+    return response.success(gendres.to_dict(orient='records'))
+  except Exception as e:
+    return response.error( e.args[0])
