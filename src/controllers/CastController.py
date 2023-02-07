@@ -15,3 +15,12 @@ def index():
     # return response.success(Cast.getAllCast().to_list())
   except Exception as e:
     return response.error(e.args[0])
+
+@CastApp.route('/casts/grafik')
+def grafik():
+  try:
+    
+    return response.success(Cast.getAllCastWithAllAttributes().to_dict(orient='records'))
+    
+  except Exception as e:
+    return response.error(e.args[0])

@@ -1,4 +1,5 @@
 import pandas as pd
+import random 
 def splitDataFrameList(df,target_column,separator):
     ''' df = dataframe to split,
     target_column = the column containing the values to split
@@ -26,3 +27,16 @@ def createPivotOf(dataFrame, targetDataFrame, column1, column2):
   # pivotName = dataFrame.pivot_table(index= dataFrame[column2], columns = dataFrame[column1], values=[column2], aggfunc='count')
   # return pivotName.fillna(0).astype(int)
   return dataFrame.reset_index()
+
+
+def formatDataFrame(dataframe,groubyColumn,aggColumn):
+    df_cast_grouped = dataframe.groupby(groubyColumn).agg({aggColumn: 'count'}).reset_index(
+    ).rename(columns={'cast': 'id', 'title': 'value'})
+    base_colors = ['rgb(26, 188, 156)', 'rgb(52, 152, 219)','rgb(155, 89, 182)', 'rgb(241, 196, 15)', 'rgb(230, 126, 34)', 'rgb(231, 76, 60)']
+    df_cast_grouped['label'] = df_cast_grouped['id']
+    color = []
+    for i in range(len(df_cast_grouped)):
+        color.append(base_colors[random.randint(0, len(base_colors) - 1)])
+    df_cast_grouped['color'] = color
+    return df_cast_grouped
+  
