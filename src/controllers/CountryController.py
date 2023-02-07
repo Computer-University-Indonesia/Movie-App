@@ -19,6 +19,6 @@ def index():
 def grafik():
   try:
     country = Country.getCountryWithAllAttributes()
-    return response.success(country.to_dict(orient='records'))
+    return response.success(country)
   except Exception as e:
     return response.error(e.args[0])
