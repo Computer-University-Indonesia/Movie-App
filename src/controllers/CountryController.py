@@ -14,3 +14,11 @@ def index():
     return response.success(Country.getAllCountry().to_dict(orient='records'))
   except Exception as e:
     return response.error(e.args[0])
+
+@CountryApp.route('/countries/grafik')
+def grafik():
+  try:
+    country = Country.getCountryWithAllAttributes()
+    return response.success(country.to_dict(orient='records'))
+  except Exception as e:
+    return response.error(e.args[0])

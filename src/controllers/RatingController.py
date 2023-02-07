@@ -15,3 +15,12 @@ def index():
     return response.success(ratings.to_list())
   except Exception as e:
     return response.error(e.args[0])
+
+
+@RatingApp.route('/ratings/grafik')
+def grafik():
+  try:
+    ratings = Rating.getRatingWithAllAttributes()
+    return response.success(ratings.to_dict(orients='records'))
+  except Exception as e:
+    return response.error(e.args[0])

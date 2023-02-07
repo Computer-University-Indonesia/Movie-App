@@ -15,3 +15,11 @@ def index():
     return response.success(types.to_list())
   except Exception as e:
     return response.error(e.args[0])
+
+@TypeApp.route('/types/grafik')
+def grafik():
+  try:
+    types = Type.getTypeWithAllAttributes()
+    return response.success(types.to_dict(orient='records'))
+  except Exception as e:
+    return response.error(e.args[0])

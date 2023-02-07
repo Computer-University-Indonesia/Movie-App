@@ -1,9 +1,9 @@
 from src.models.Model import GetData
 from src.utils.filter import getDataFiltered
 import src.utils.convertCountry as convertCountry
+from src.utils.dataframe import formatDataFrame
 
 df_country = GetData('country')
-
 
 def getAllCountry():
   code = convertCountry.getCode(df_country)
@@ -17,3 +17,6 @@ def getAllCountry():
 def getCountryFiltered(key, value):
   
   return getDataFiltered('country',getAllCountry, key, value)
+
+def getCountryWithAllAttributes():
+  return formatDataFrame(df_country, 'country','title')
