@@ -21,6 +21,6 @@ def index():
 def grafik():
   try:
     ratings = Rating.getRatingWithAllAttributes()
-    return response.success(ratings.to_dict(orients='records'))
+    return response.success(ratings.to_dict(orient='records'))
   except Exception as e:
     return response.error(e.args[0])
