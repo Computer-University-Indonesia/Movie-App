@@ -15,3 +15,11 @@ def index():
     return response.success(directors.to_list())
   except Exception as e:
     return response.error(e.args[0])
+
+@DirectorApp.route('/directors/grafik')
+def grafik():
+  try:
+    directors = Director.getDirectorWithAllAttributes()
+    return response.success(directors.to_dict(orient='records'))
+  except Exception as e:
+    return response.error(e.args[0])

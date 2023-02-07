@@ -1,6 +1,6 @@
 from src.models.Model import GetData
 from src.utils.filter import getDataFiltered
-
+from src.utils.dataframe import formatDataFrame
 df_director = GetData('director')
 
 
@@ -11,3 +11,6 @@ def getAllDirector():
 def getDirectorFiltered(key, value):
 
   return getDataFiltered('director',getAllDirector, key, value)['director']
+
+def getDirectorWithAllAttributes():
+  return formatDataFrame(df_director,'director','title')

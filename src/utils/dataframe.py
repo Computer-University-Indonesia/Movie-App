@@ -31,7 +31,7 @@ def createPivotOf(dataFrame, targetDataFrame, column1, column2):
 
 def formatDataFrame(dataframe,groubyColumn,aggColumn):
     df_cast_grouped = dataframe.groupby(groubyColumn).agg({aggColumn: 'count'}).reset_index(
-    ).rename(columns={'cast': 'id', 'title': 'value'})
+    ).rename(columns={'groubyColumn': 'id', 'title': 'value'})
     base_colors = ['rgb(26, 188, 156)', 'rgb(52, 152, 219)','rgb(155, 89, 182)', 'rgb(241, 196, 15)', 'rgb(230, 126, 34)', 'rgb(231, 76, 60)']
     df_cast_grouped['label'] = df_cast_grouped['id']
     color = []
