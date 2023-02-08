@@ -9,10 +9,12 @@ def index():
   try:
     key = request.args.get('key')
     value = request.args.get('value')
-    types = Type.getAllType()
+    types = Type.getAllType().to_list()
     if (key != None and value != None):
-      types = Type.getTypeFiltered(key, value)
-    return response.success(types.to_list())
+      types_filtered = Type.getTypeFiltered(key, value)
+      types_renamed = types_filtered.rename(columns={0:'count'})
+      types=types_renamed.to_dict(orient='records')
+    return response.success(types)
   except Exception as e:
     return response.error(e.args[0])
 

@@ -8,10 +8,12 @@ def index():
   try:
     key = request.args.get('key')
     value = request.args.get('value')
-    casts = Cast.getAllCast()
+    casts = Cast.getAllCast().to_list()
     if (key != None and value != None):
-      casts = Cast.getCastFiltered(key, value)
-    return response.success(casts.to_list())
+      casts_filtered = Cast.getCastFiltered(key, value)
+      casts_renamed = casts_filtered.rename(columns={0: 'count'})
+      casts = casts_renamed.to_dict(orient='records')
+    return response.success(casts)
     # return response.success(Cast.getAllCast().to_list())
   except Exception as e:
     return response.error(e.args[0])

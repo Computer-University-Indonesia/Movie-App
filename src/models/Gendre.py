@@ -8,7 +8,7 @@ def getAllGendre():
   
 
 def getGendreFiltered(key, value):
-  return getDataFiltered('listed_in', getAllGendre, key, value)['listed_in']
+  return getDataFiltered('listed_in', getAllGendre, key, value)
 
 
 def getGendreWithAllAttributes():

@@ -9,9 +9,12 @@ def index():
   try:
     key = request.args.get('key')
     value = request.args.get('value')
-    gendres = Gendre.getAllGendre()
-    if(key != None and value != None) : gendres = Gendre.getGendreFiltered(key, value)
-    return response.success(gendres.to_list())
+    gendres = Gendre.getAllGendre().to_list()
+    if(key != None and value != None) : 
+      gendres_filtered = Gendre.getGendreFiltered(key, value)
+      gendres_renamed = gendres_filtered.rename(columns={0:'count','listed_in':'genre'})
+      gendres = gendres_renamed.to_dict(orient='records')
+    return response.success(gendres)
   except  Exception as e:
     return response.error( e.args[0])
 

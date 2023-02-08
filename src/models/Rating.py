@@ -8,7 +8,7 @@ def getAllRating():
 
 
 def getRatingFiltered(key, value):
-    return getDataFiltered('rating', getAllRating, key, value)['rating']
+    return getDataFiltered('rating', getAllRating, key, value)
 
 def getRatingWithAllAttributes():
     return formatDataFrame(df_rating, 'rating', 'title')

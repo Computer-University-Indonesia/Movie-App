@@ -9,10 +9,12 @@ def index():
   try:
     key = request.args.get('key')
     value = request.args.get('value')
-    directors = Director.getAllDirector()
+    directors = Director.getAllDirector().to_list()
     if (key != None and value != None):
-      directors = Director.getDirectorFiltered(key, value)
-    return response.success(directors.to_list())
+      directors_filtered = Director.getDirectorFiltered(key, value)
+      directors_renamed = directors_filtered.rename(columns={0: 'count'})
+      directors = directors_renamed.to_dict(orient='records')
+    return response.success(directors)
   except Exception as e:
     return response.error(e.args[0])
 

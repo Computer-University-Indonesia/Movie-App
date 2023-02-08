@@ -9,10 +9,12 @@ def index():
   try:
     key = request.args.get('key')
     value = request.args.get('value')
-    ratings = Rating.getAllRating()
+    ratings = Rating.getAllRating().to_list()
     if (key != None and value != None):
-      ratings = Rating.getRatingFiltered(key, value)
-    return response.success(ratings.to_list())
+      ratings_filtered = Rating.getRatingFiltered(key, value)
+      ratings_renamed = ratings_filtered.rename(columns={0:'count'})
+      ratings = ratings_renamed.to_dict(orient='records')
+    return response.success(ratings)
   except Exception as e:
     return response.error(e.args[0])
 

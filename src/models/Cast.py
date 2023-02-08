@@ -9,7 +9,7 @@ def getAllCast():
 
 
 def getCastFiltered(key, value):
-  return getDataFiltered('cast', getAllCast, key, value)['cast']
+  return getDataFiltered('cast', getAllCast, key, value)
 
 def getAllCastWithAllAttributes():
   return formatDataFrame(df_cast,'cast','title')

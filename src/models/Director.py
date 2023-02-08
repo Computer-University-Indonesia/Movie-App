@@ -10,7 +10,7 @@ def getAllDirector():
 
 def getDirectorFiltered(key, value):
 
-  return getDataFiltered('director',getAllDirector, key, value)['director']
+  return getDataFiltered('director',getAllDirector, key, value)
 
 def getDirectorWithAllAttributes():
   return formatDataFrame(df_director,'director','title')

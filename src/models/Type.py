@@ -9,7 +9,7 @@ def getAllType():
 
 
 def getTypeFiltered(key, value):
-  return getDataFiltered('type', getAllType, key, value)['type']
+  return getDataFiltered('type', getAllType, key, value)
 
 def getTypeWithAllAttributes():
   return formatDataFrame(df_type, 'type','title')
