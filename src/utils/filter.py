@@ -30,6 +30,6 @@ def getDataFiltered(model,get_all,key, value):
   if(model =='country'):
     code = convertCountry.getCode(result)
     result['id'] = code
-    result.rename(columns={0: 'value'}, inplace=True)
+    result.rename(columns={0: 'count'}, inplace=True)
   
   return result
